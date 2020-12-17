@@ -300,7 +300,229 @@ then use `FN T()` instead of `TIME`. The *T* variable should be
 changed to avoid a clash with the user-defined function: I used *V*,
 for no particular reason. Don't forget to address `GO TO` and 
 `GO SUB`, plus Sinclair BASIC's unique `a$([n] TO [m])` string-slicing
-syntax.
+syntax. Oh, and that `END` isn't a keyword in Sinclair BASIC.
+
+## References and Resources
+
+These weren't necessarily used here, but they're all part of the
+reading that informed this work.
+
+### BASIC Benchmarking
+
+There are many existing BASIC benchmarks, including:
+
+#### Speed
+
+* "[PCW
+  Benchmarks](https://en.wikipedia.org/wiki/Rugg/Feldman_benchmarks)",
+  first published in 1977 by Rugg & Feldman in *Kilobaud* magazine,
+  and later expanded by John Coll in *Personal Computer World* (PCW)
+  magazine.
+  
+  * short and easy to type in
+  
+  * all timing is manual
+  
+  * no string or user-defined function testing.
+  
+* “[Creative Computing
+  Benchmark](https://en.wikipedia.org/wiki/Creative_Computing_Benchmark)”,
+  published by David Ahl in *Creative Computing* magazine in 1983.
+  
+  * short
+  
+  * tests only numerical and loop speed
+
+  * all timing is manual
+
+  * code is messy with unclear aims.
+  
+* “[Byte Sieve](https://en.wikipedia.org/wiki/Byte_Sieve)”, published
+  in *BYTE* magazine in 1981.
+  
+  * short
+  
+  * requires between 16 – 40 K of RAM to store results array, so won't
+    run on very small home computers
+  
+  * tests only numerical loop and simple array subscription speed.
+  
+  * all timing is manual
+
+* “[ClockSp](http://mdfs.net/Software/BBCBasic/Testing/)” by
+  J.G.Harston, later
+  [modified](https://stardot.org.uk/forums/viewtopic.php?f=2&t=19819&start=30#p276764)
+  by Richard Russell for fairer portability.
+  
+  * Tests a fair set of language functions
+  
+  * Scales test size based on processor speed
+  
+  * Reports results relative to a 2 MHz 6502 Acorn BBC Micro
+  
+  * Specialized only to the BBC BASIC dialect; utterly unportable (and
+    deliberately so)
+  
+  * Assumes some system tweaking to make the BBC Micro appear slightly
+    faster than its default setting.
+	
+  * (ClockSp was the inspiration for me starting on this odyssey of
+    BASIC bench-marking ...)
+	
+* “[asciiart.bas](https://www.retrobrewcomputers.org/forum/index.php?t=msg&th=201&goto=4704&#msg_4704)”,
+  an informal benchmark that plots the Mandelbrot set in an 80 column
+  text terminal.
+  
+  * unknown outside the retro-computing field
+  
+  * tests only numerical and loop speed
+  
+  * quite short
+  
+  * really needs an 80 column display or the output is messy
+  
+  * Sometimes limited by terminal output speed: display takes ~2 s
+    alone on a 9600 baud terminal
+  
+  * all timing is manual.
+
+#### Precision
+
+* [paranoia](https://www.netlib.org/paranoia/paranoia.b) by
+  Prof. W. M. Kahan, 1983 (for the IBM PC) (further write-up in [Byte
+  Magazine Volume 10 Number 02 - Computing and the
+  Sciences](https://archive.org/stream/byte-magazine-1985-02/1985_02_BYTE_10-02_Computing_and_the_Sciences#page/n222/mode/1up)
+  by Richard Karpinski)
+  
+  * written by the architect of the IEEE floating point standard
+  
+  * will tell you that your floating point routines are bad and that
+    you too should feel bad.
+	
+* [Roger
+  Broucke](https://archive.org/details/1982-10-anticmagazine/page/n15/mode/1up?q=broucke)
+  benchmark in *Antic* magazine, 1982.
+  
+  * Mostly a test of whether your floating point is BCD (Atari, MSX,
+    Tandy 100, a few others) or binary (everyone else, mostly). Modern
+    binary IEEE floating point passes, too
+	
+  * very short and easy to type in
+  
+  * has a numeric performance aspect, though not widely known.
+
+### Standards
+
+* [ECMA-55: Minimal BASIC](https://archive.org/details/ecma-55-1978)
+    (1978) - a cut-down BASIC with no string handling and none of the
+    `MAT` matrix manipulation tools built into Dartmouth BASIC. Very
+    similar to ANSI Standard for Minimal BASIC, X3.60-1978, that
+    informed Microsoft BASIC design. By meeting US [Federal
+    Information Processing
+    Standards](https://archive.org/details/federalinformati68nati),
+    Microsoft were better able to meet government purchasing
+    requirements.
+
+* [ECMA-116: BASIC](https://archive.org/details/ecma-116-1986)
+    (1986). Full BASIC, including now-neglected matrix and BCD
+    floating point functions.
+	
+* NBS minimal BASIC test programs: [vol 1 —
+    Documentation](https://archive.org/details/nbsminimalbasict5007cugi/page/n5/mode/2up),
+    [vol 2 — source and sample
+    output](https://archive.org/details/nbsminimalbasic5007cugi_0)
+    (1980). Very rigid test routines for Minimal BASIC standards
+    compliance. No such test suite exists for Full BASIC, hence the
+    core BASIC keywords that “just work” are very few.
+
+### Social History
+
+* Rankin, Joy Lisi. [A People’s History of Computing in the United
+  States](https://www.hup.harvard.edu/catalog.php?isbn=9780674970977)
+  Harvard University Press, 2018. Chapter 3 (“Back to BASICs”) refers
+  to the development of the Dartmouth Time Sharing System (DTSS) in
+  the 1960s, of which BASIC was a key component.
+  
+### Manuals
+
+* [Dartmouth BASIC 4th
+  Edition](https://archive.org/details/bitsavers_dartmouthB_3679804)
+  manual (1968). Dartmouth College's manual from the DTSS. You likely
+  won't like the way that `IF` worked in the original implementation,
+  but don't get all Dijkstra about it.
+
+* [The BASIC Handbook : Encyclopedia of the BASIC computer
+  language](https://archive.org/details/Basic_Handbook_2nd_Edition_1981_CompuSoft_Publishing),
+  by David A. Lien (1981). A cross-reference of many early home
+  computer BASIC dialects, highlighting (in)compatibilities and
+  workarounds.
+  
+* [Amstrad CPC 464 User Manual](https://archive.org/details/cpc464.en)
+  (1984). Locomotive BASIC, the one I grew up with.
+  
+* Microsoft [BASIC-80 (MBASIC) Reference
+  Manual](https://archive.org/details/BASIC-80_MBASIC_Reference_Manual/mode/2up)
+  (1981).
+  
+* [BBC Microcomputer User
+  Guide](https://stardot.org.uk/forums/download/file.php?id=57043)
+  (BBC, 1982). Remastered PDF version from Stardot forum users. Forum
+  link: [BBC Micro User Guide \[Remastered PDF\] - stardot.org.uk](https://stardot.org.uk/forums/viewtopic.php?t=14024).
+
+* [Sinclair ZX Spectrum BASIC
+  Programming](https://worldofspectrum.org/ZXBasicManual/index.html)
+  manual (1982/1995)
+  
+* [Commodore 64 User's
+  Guide](https://www.commodore.ca/manuals/c64_users_guide/c64-users_guide.htm)
+  (1982).
+  
+### Current portable BASIC implementations
+
+* [bas](http://www.moria.de/~michael/bas/). Michael Haardt's
+  implementation of Full BASIC.
+
+* [BBC BASIC for SDL 2.0 (BBCSDL)](http://www.bbcbasic.co.uk/bbcsdl/),
+  by Richard Russell. Richard is a retired BBC engineer who was on the
+  original steering committee for BBC BASIC around 1980. He has
+  written [numerous
+  implementations](http://www.bbcbasic.co.uk/index.html) of BBC BASIC
+  (some now freely available) since then. BBCSDL is an open-source
+  portable version of his commercial [BBC BASIC for
+  Windows](http://www.bbcbasic.co.uk/bbcwin/bbcwin.html) package.
+
+* [Matrix Brandy](http://brandy.matrixnetwork.co.uk/), a
+  multi-platform BBC BASIC VI interpreter with optional SDL graphics
+  support. 
+
+* [X11-Basic](http://x11-basic.sourceforge.net/), Markus Hoffman's
+  BASIC interpreter/compiler for UNIX. Inspired by GFA-BASIC, the late
+  Frank Ostrowski's fast but quirky BASIC dialect for the Atari ST.
+
+* ([Decimal BASIC](https://hp.vector.co.jp/authors/VA008683/english/)
+  is another Full BASIC implementation, this time with BCD floating
+  point and graphics. It can be rather hard to compile.)
+
+### 8-bit system emulators
+
+There are many. These may not be the best available, but they're the
+ones I use.
+
+* [VICE - the Versatile Commodore
+  Emulator](https://vice-emu.sourceforge.io/). VICE is a huge
+  community effort to emulate 8-bit Commodore computers accurately.
+
+* [B-em](https://github.com/stardot/b-em) emulates many Acorn
+  computers, including the various models of BBC Micro. Lovingly
+  maintained by the Stardot forum community.
+  
+* [Fuse](http://fuse-emulator.sourceforge.net/), the ZX Spectrum
+  emulator.
+  
+* [Arnold](https://www.cpcwiki.eu/index.php/Arnold_%28Emulator%29), an
+  Amstrad CPC emulator. There are many forks floating around the
+  internet in varying stages of usefulness, but I use this
+  older-but-stable build.
 
 ## Author
 
