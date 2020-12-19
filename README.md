@@ -79,7 +79,7 @@ test.
   LEFT$ (etc.) and requires a sequence of PEEKs to get the elapsed time
   (ref:
   [Motion](https://worldofspectrum.org/ZXBasicManual/zxmanchap18.html)). These
-  are all allowable. Using BBC BASIC's fast integer variables,
+  are all allowable. Using Acorn BBC BASIC's fast integer variables,
   however, is not.
   
 * For improved portability, variables will be assigned using `LET`
@@ -190,7 +190,7 @@ Baseline I=100 for "new" NTSC Commodore 64c. Older machines (`x64sc
 to give I=100. Any Commodore machines listed below are NTSC unless
 stated otherwise.
 
-* Commodore PET 2001: 90 (would be >100, but `GOTO` performance is dismal)
+* Commodore PET 2001: 90
 
 * Commodore PET 4032: 87
   
@@ -236,6 +236,12 @@ here are their results in full, too:
           27.9S;60/S; I=215
     
     OVERALL INDEX=202
+
+**Fun fact**: the early Commodore PETs have a bug in their `GOTO`
+code. If I'd renumbered the code starting at line 260 instead of line
+10, the PET would have come out *faster* than the reference
+system. This is why it's important to avoid any system-specific
+optimization in a benchmark that aims to be fair and portable.
 
 ### Porting notes by platform
 
