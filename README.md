@@ -126,6 +126,9 @@ Does not produce useful results for very fast computers where test
 durations tend towards zero. BASIC is not typically used on such
 computers.
 
+Won't ever run correctly on Atari BASIC, because it doesn't have user-
+defined functions. Soz, Maury … ☹
+
 ## Results
 
 ### Reporting results
