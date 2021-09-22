@@ -246,6 +246,13 @@ code. If I'd renumbered the code starting at line 260 instead of line
 system. This is why it's important to avoid any system-specific
 optimization in a benchmark that aims to be fair and portable.
 
+### Modern microcontroller platform results
+
+Even this tiny processor's getting almost too fast to benchmark:
+
+* [mmbasic on Raspberry Pi Pico](https://www.thebackshed.com/forum/ViewTopic.php?PID=175254#175254): 6018
+* [BBC BASIC on Raspberry Pi Pico](https://www.raspberrypi.org/forums/viewtopic.php?f=144&t=316761&start=625#p1912334): 17978
+
 ### Porting notes by platform
 
 #### Amstrad CPC
@@ -267,6 +274,12 @@ Change
 to
 
     DEF FND(X)=(TIME-X)/100
+
+#### mmbasic
+
+* change `DEF FN` to `FUNCTION ... END FUNCTION`
+* change name of function `R` to `FR` as functions and variables can't have the same name
+* use and reset mmbasic's millisecond TIMER variable
 
 #### Generic - No Timer
 
