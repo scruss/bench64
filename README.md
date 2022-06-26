@@ -524,6 +524,10 @@ There are many existing BASIC benchmarks, including:
 * ([Decimal BASIC](https://hp.vector.co.jp/authors/VA008683/english/)
   is another Full BASIC implementation, this time with BCD floating
   point and graphics. It can be rather hard to compile.)
+  
+* [cbmbasic](https://github.com/mist64/cbmbasic), a portable version of Commodore's version of Microsoft BASIC 6502 as found on the Commodore 64. Not a very good interpreter by anyone's standards, but it's familiar to many.
+
+* [PC-BASIC](https://robhagemans.github.io/pcbasic/) - Rob Hagemans' loving recreation of GW-BASIC. Extremely compatible. Perfect for all your [BASICODE](https://github.com/robhagemans/basicode) programs ...
 
 ### 8-bit system emulators
 
