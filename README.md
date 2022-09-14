@@ -213,6 +213,8 @@ stated otherwise.
 
 * Amstrad CPC6128 (BBC BASIC): 130
 
+* MSX1 (NTSC): 73
+
 * BBC Micro: 202
 
 Beeb users are probably the most likely to nitpick these results, so
@@ -323,6 +325,16 @@ changed to avoid a clash with the user-defined function: I used *V*,
 for no particular reason. Don't forget to address `GO TO` and 
 `GO SUB`, plus Sinclair BASIC's unique `a$([n] TO [m])` string-slicing
 syntax. Oh, and that `END` isn't a keyword in Sinclair BASIC.
+
+#### MSX BASIC
+
+If you're using an EU / PAL / 50 Hz machine, change
+
+    DEF FND(X)=(TIME-X)/60
+
+to
+
+    DEF FND(X)=(TIME-X)/50
 
 ## References and Resources
 
