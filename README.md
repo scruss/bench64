@@ -419,6 +419,21 @@ There are many existing BASIC benchmarks, including:
     alone on a 9600 baud terminal
   
   * all timing is manual.
+  
+* “[mandel.bas](https://unicorn.drogon.net/mandel.bas)”, by Gordon Henderson.
+
+  * designed for portability
+  
+  * about as well structured as you can get when sticking to simple `IF`s and `GOTO`s
+  
+  * internal timing (for BBC BASIC as supplied)
+  
+  * mostly tests floating point addition / subtraction / multiplication / division
+  
+  * really needs an 80 column display or the output is messy. Conversely,
+    [output](https://unicorn.drogon.net/mandel.txt) looks pretty good on an 80-column printer
+    
+  * takes a while to run: over 23 minutes on a C64.
 
 #### Precision
 
