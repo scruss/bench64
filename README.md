@@ -183,8 +183,9 @@ The glorious MinZ results in full:
     
     OVERALL INDEX= 1839 
 
-(I also have an Apple IIgs, a 6502 40th Anniversary badge and a
-SBC-6120 [Digital PDP-8 compatible] but haven't benchmarked those yet.)
+(I also have an Apple IIe, a 6502 40th Anniversary badge, a
+SBC-6120 [Digital PDP-8 compatible], an Acorn BBC Micro and
+several little RCA1802 devices but haven't benchmarked those yet.)
 
 ### Emulated platform results
 
@@ -216,6 +217,8 @@ stated otherwise.
 * MSX1 (NTSC): 73
 
 * BBC Micro: 202
+
+* IBM PC (4.77 MHz 8088, PC-DOS 1.10): 140
 
 Beeb users are probably the most likely to nitpick these results, so
 here are their results in full, too:
@@ -335,6 +338,22 @@ If you're using an EU / PAL / 50 Hz machine, change
 to
 
     DEF FND(X)=(TIME-X)/50
+
+#### IBM PC
+
+*The IBM Personal Computer Basic* Version D1.10 only has the `TIME$` system
+variable, so results have limited resolution. Change
+
+    270 DEF FND(X)=(TIME-X)/60
+
+to
+
+    270 DEF FND(X)=VAL(RIGHT$(TIME$,2))+60*VAL(MID$(TIME$,4,2))
+
+and change all references to `LET T=TIME` (in lines 420, 500, 590,
+680, 760, 850, 940 and 1030) to `TIME$="00:00:00"`. Because `TIME$`
+is a system/pseudo variable, the interpreter won't let you use `LET`
+to set the value.
 
 ## References and Resources
 
