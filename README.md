@@ -220,6 +220,8 @@ stated otherwise.
 
 * IBM PC (4.77 MHz 8088, PC-DOS 1.10): 140
 
+* Tandy Color Computer: 90
+
 Beeb users are probably the most likely to nitpick these results, so
 here are their results in full, too:
 
@@ -354,6 +356,10 @@ and change all references to `LET T=TIME` (in lines 420, 500, 590,
 680, 760, 850, 940 and 1030) to `TIME$="00:00:00"`. Because `TIME$`
 is a system/pseudo variable, the interpreter won't let you use `LET`
 to set the value.
+
+#### Tandy Color Computer
+
+Replace all `TIME` references with `TIMER`.
 
 ## References and Resources
 
