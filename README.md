@@ -298,7 +298,7 @@ Change
 to
 
     260 REM MACHINE SPECIFIC TIME FUNCTION
-	265 LET TIME=0
+	265 LET TMIE=0
     270 DEF FND(X)=60
 
 Doesn't actually do anything, so you have to time output and calculate
@@ -306,9 +306,7 @@ results yourself. The program `bench64_output` will help you do
 that. A screen recorder can help work out timings by reviewing when
 each test starts and stops by counting video frames.
 
-Note that some interpreters (notably BBC BASIC for CP/M) reserve the
-`TIME` function name but don't use it. For platforms like this, please
-rename the `TIME` variable.
+References to `TIME` have been changed to `TMIE` to improve compatibility.
 
 #### ZX Spectrum
 
