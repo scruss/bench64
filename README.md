@@ -115,8 +115,8 @@ loops is initially tuned to take 60 s on an NTSC Commodore 64.
    character, becoming `"BCDEFGHIJKLMNOPQRSTUVWXYZ1234567890A"` after
    the first iteration.
 
-8. **Array Subscripts** - a 12 entry `a()` is pre-filled with 1
-   .. 12. For all but the first and last items,
+8. **Array Subscripts** - a 12 entry `a()` is pre-filled with
+   1 .. 12. For all but the first and last items,
    `A(X)=(A(X-1)+A(X)+A(X+1))/3` where `X` is calculated from the loop
    variable using the user-defined function used in test 5.
 
@@ -150,42 +150,22 @@ defined functions. Soz, Maury … ☹
    values have passing interest, if your platform can't reasonably run
    all of the tests (perhaps through lack of floating point support),
    it cannot return a valid overall index.
+   
+5. If you modify the code outside these guidelines, call the program
+   anything but *bench64*. 
 
-### Real 8-bit hardware platform results
+### Real 8/16-bit hardware platform results
 
-* MinZ v1.1 (36.864 Z180, CP/M 2.2, BBC BASIC [Z80] v3): 1839
+* MinZ v1.1 (36.864 MHz Z180, CP/M 2.2, BBC BASIC [Z80] v3): 1839
+
+* Amstrad PPC640 (8 MHz NEC V30, GW-BASIC 3.20): 380
+
+* Acorn BBC Micro Model B (2 MHz 6502, BBC BASIC v2): 208
 
 * Commodore 64c (NTSC): 100
 
 * ZX Spectrum 48k: 29
 
-The glorious MinZ results in full:
-
-    BASIC BENCH INDEX
-    >I GOOD. NTSC C64=100
-    
-    1/8 - FOR:
-     3.2 S; 12778 /S; I= 1895 
-    2/8 - GOTO:
-     6.1 S; 4324.5 /S; I= 978 
-    3/8 - GOSUB:
-     3.1 S; 6789 /S; I= 1935 
-    4/8 - IF:
-     2.9 S; 4966.9 /S; I= 2046 
-    5/8 - FN:
-     3.5 S; 1030.6 /S; I= 1698 
-    6/8 - MATHS:
-     1.5 S; 255.3 /S; I= 4000 
-    7/8 - STRING:
-     2.6 S; 1871.6 /S; I= 2279 
-    8/8 - ARRAY:
-     3.1 S; 540.3 /S; I= 1935 
-    
-    OVERALL INDEX= 1839 
-
-(I also have an Apple IIe, a 6502 40th Anniversary badge, a
-SBC-6120 [Digital PDP-8 compatible], an Acorn BBC Micro and
-several little RCA1802 devices but haven't benchmarked those yet.)
 
 ### Emulated platform results
 
@@ -216,36 +196,9 @@ stated otherwise.
 
 * MSX1 (NTSC): 73
 
-* BBC Micro: 202
-
 * IBM PC (4.77 MHz 8088, PC-DOS 1.10): 140
 
 * Tandy Color Computer: 90
-
-Beeb users are probably the most likely to nitpick these results, so
-here are their results in full, too:
-
-    BASIC BENCH INDEX
-    >I GOOD. NTSC C64=100
-    
-    1/8 - FOR:
-          29.2S;1384/S; I=205
-    2/8 - GOTO:
-          44.4S;597.2/S; I=135
-    3/8 - GOSUB:
-          22.9S;919.4/S; I=262
-    4/8 - IF:
-          21.9S;665.8/S; I=274
-    5/8 - FN:
-          30.4S;119.7/S; I=197
-    6/8 - MATHS:
-            32S;12/S; I=187
-    7/8 - STRING:
-          28.6S;172.3/S; I=210
-    8/8 - ARRAY:
-          27.9S;60/S; I=215
-    
-    OVERALL INDEX=202
 
 **Fun fact**: the early Commodore PETs have a bug in their `GOTO`
 code. If I'd renumbered the code starting at line 260 instead of line
@@ -253,7 +206,7 @@ code. If I'd renumbered the code starting at line 260 instead of line
 system. This is why it's important to avoid any system-specific
 optimization in a benchmark that aims to be fair and portable.
 
-### Modern microcontroller platform results
+### Modern micro-controller platform results
 
 Even this tiny processor's getting almost too fast to benchmark:
 
@@ -341,6 +294,8 @@ to
 
 #### IBM PC
 
+##### IBM Personal Computer Basic (early)
+
 *The IBM Personal Computer Basic* Version D1.10 only has the `TIME$` system
 variable, so results have limited resolution. Change
 
@@ -354,6 +309,23 @@ and change all references to `LET T=TIME` (in lines 420, 500, 590,
 680, 760, 850, 940 and 1030) to `TIME$="00:00:00"`. Because `TIME$`
 is a system/pseudo variable, the interpreter won't let you use `LET`
 to set the value.
+
+##### GW-BASIC
+
+While the `TIME$` method described above might work, GW-BASIC has a
+`TIMER` keyword that returns a floating point value in seconds. Change
+
+    270 DEF FND(X)=(TIME-X)/60
+
+to
+
+    270 DEF FND(X)=TIMER-X
+
+and all occurrences of `LET T=TIME` to `LET T=TIMER`.
+
+Results may vary from the [many
+versions](https://hwiegman.home.xs4all.nl/gwbasic.html#versions) of
+the interpreter produce by Microsoft and Compaq over the years.
 
 #### Tandy Color Computer
 
@@ -417,7 +389,7 @@ There are many existing BASIC benchmarks, including:
   
   * Reports results relative to a 2 MHz 6502 Acorn BBC Micro
   
-  * Specialized only to the BBC BASIC dialect; utterly unportable (and
+  * Specialized only to the BBC BASIC dialect; utterly non-portable (and
     deliberately so)
   
   * Assumes some system tweaking to make the BBC Micro appear slightly
@@ -521,7 +493,7 @@ There are many existing BASIC benchmarks, including:
   Edition](https://archive.org/details/bitsavers_dartmouthB_3679804)
   manual (1968). Dartmouth College's manual from the DTSS. You likely
   won't like the way that `IF` worked in the original implementation,
-  but don't get all Dijkstra about it.
+  but don't be a Dijkstra about it.
 
 * [The BASIC Handbook : Encyclopedia of the BASIC computer
   language](https://archive.org/details/Basic_Handbook_2nd_Edition_1981_CompuSoft_Publishing),
