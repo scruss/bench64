@@ -160,6 +160,8 @@ defined functions. Soz, Maury … ☹
 
 * Amstrad PPC640 (8 MHz NEC V30, GW-BASIC 3.20): 380
 
+* Atari 1040 STf (8 MHz 68000, Atari ST BASIC): 375
+
 * Acorn BBC Micro Model B (2 MHz 6502, BBC BASIC v2): 208
 
 * Commodore 64c (NTSC): 100
